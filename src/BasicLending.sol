@@ -44,4 +44,12 @@ contract BasicLending {
         if (borrowedBalances[msg.sender] == 0)
             emit FullyRepayedLoan(msg.sender);
     }
+
+    function getBalance(address _user) external view returns (uint256) {
+        return balances[_user];
+    }
+
+    function getBorrowedBalance(address _user) external view returns (uint256) {
+        return borrowedBalances[_user];
+    }
 }
