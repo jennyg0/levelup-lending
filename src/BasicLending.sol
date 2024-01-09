@@ -13,7 +13,7 @@ contract BasicLending {
     event Withdraw(address indexed from, uint256 amount);
     event Borrow(address indexed from, uint256 amount);
     event Repay(address indexed from, uint256 amount);
-    event FullyRepayedLoan(address indexed from);
+    event FullyRepaidLoan(address indexed from);
 
     function deposit() public payable {
         balances[msg.sender] += msg.value;
@@ -41,8 +41,7 @@ contract BasicLending {
             revert RepaymentExceedsDebt();
         borrowedBalances[msg.sender] -= msg.value;
         emit Repay(msg.sender, msg.value);
-        if (borrowedBalances[msg.sender] == 0)
-            emit FullyRepayedLoan(msg.sender);
+        if (borrowedBalances[msg.sender] == 0) emit FullyRepaidLoan(msg.sender);
     }
 
     function getBalance(address _user) external view returns (uint256) {
