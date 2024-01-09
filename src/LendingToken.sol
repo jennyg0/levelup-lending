@@ -7,4 +7,8 @@ contract LendingToken is ERC20 {
     constructor() ERC20("Basic Lending", "BL") {
         _mint(msg.sender, 1000000 * 10 ** 18);
     }
+
+    function mint(address to, uint256 amount) public {
+        _mint(to, amount);
+    }
 }

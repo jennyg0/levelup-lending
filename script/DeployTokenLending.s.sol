@@ -6,11 +6,11 @@ import {LendingToken} from "../src/LendingToken.sol";
 import {TokenLending} from "../src/TokenLending.sol";
 
 contract DeployTokenLending is Script {
-    function run() external returns (TokenLending) {
+    function run() external returns (TokenLending, LendingToken) {
         vm.startBroadcast();
-        LendingToken lendingToken = new LendingToken();
-        TokenLending tokenLending = new TokenLending(address(lendingToken));
+        LendingToken token = new LendingToken();
+        TokenLending tokenLending = new TokenLending(address(token));
         vm.stopBroadcast();
-        return tokenLending;
+        return (tokenLending, token);
     }
 }

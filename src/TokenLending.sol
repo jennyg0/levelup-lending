@@ -64,4 +64,8 @@ contract TokenLending {
             emit Repay(msg.sender, _amount);
         }
     }
+
+    function getBalance(address _user) external view returns (uint256) {
+        return balances[_user];
+    }
 }
